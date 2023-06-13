@@ -1,5 +1,5 @@
 require 'vacuum'
-require 'dotenv'
+require 'dotenv/load'
 
 class PaApiService
   attr_accessor :asin_code, :vacuum
@@ -12,8 +12,6 @@ class PaApiService
       secret_key: secret_key,
       partner_tag: partner_tag,
     )
-
-    super
   end
 
   def perform
@@ -41,5 +39,5 @@ class PaApiService
   end
 end
 
-pa_api = PaApiService.new
-p pa_api.perform(asin_code: 'ASDFSDGERW')
+pa_api = PaApiService.new({ asin_code: 'ASDFSDGERW' })
+p pa_api.perform
